@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+	<typeAliases>
+		<typeAlias type="com.multi.gazee.customerService.FaqVO"
+			alias="FaqVO"></typeAlias>
+		<typeAlias type="com.multi.gazee.customerService.PageVO"
+			alias="pageVO"></typeAlias>
+	</typeAliases>
+	<mappers>
+		<!-- SQL문 정의하는 파일들의 목록을 지정. -->
+		<mapper resource="mapper/faqMapper.xml" />
+	</mappers>
+
+</configuration>
+		
+

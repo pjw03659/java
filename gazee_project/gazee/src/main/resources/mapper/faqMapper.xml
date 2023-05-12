@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="faq">
+	
+	<insert id="create" parameterType="FaqVO">
+		insert into faq(faq_title,faq_content,faq_category) 
+		values (#{faqTitle}, 
+				#{faqContent}, 
+				#{faqCategory})
+	</insert>
+	
+	<delete id="del"  parameterType="FaqVO">
+		delete from faq where faq_no = #{faqNo}
+	</delete>
+	
+	<update id="up"  parameterType="FaqVO">
+		update faq set faq_title = #{faqTitle} where faq_no = #{faqNo}
+	</update>
+	
+	<select id="one" parameterType="Integer" resultType="FaqVO">
+		select faq_no, faq_title, faq_view, faq_content, faq_category from faq
+		where faq_no =#{faqNo}
+	</select>
+	
+	<update id="viewUpdate" parameterType="Integer">
+		update faq set faq_view= faq_view + 1
+		where faq_no =#{faqNo}
+	</update>
+	
+	<select id="all" resultType="FaqVO" parameterType="pageVO">
+		select * from (select ROW_NUMBER() over(order by faq_no desc)as faq_id, 
+		f.* from faq f) faq2 where faq2.faq_id between #{start} and #{end}
+	</select>
+	
+	<select id="category" parameterType="String" resultType="FaqVO">
+		select faq_no, faq_title, faq_view, faq_category from faq
+		where faq_category=#{faqCategory}
+	</select>
+	
+	<select id="count" resultType="Integer">
+		select count(*) from faq
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
